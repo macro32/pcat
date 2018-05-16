@@ -3,7 +3,7 @@
 #
 #  main.py
 #  
-#  Copyright 2018 john <john@amadeus>
+#  Copyright 2018 john 
 #  
 
 # process the program arguments
