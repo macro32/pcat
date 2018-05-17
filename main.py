@@ -3,8 +3,12 @@
 #
 #  main.py
 #  
-#  Copyright 2018 john 
+#  Copyright 2018 john@johnratcliffe.com
 #  
+
+import sqlite
+import exif
+
 
 # process the program arguments
 import argparse
@@ -24,6 +28,8 @@ def init():
 	print( "init()" )
 	# check program args
 	# extract args and create processing classes
+	db = sqlite.Sqlite()
+	data = exif.Exif()
 	# set up logging
 	# set up database
 	pass
