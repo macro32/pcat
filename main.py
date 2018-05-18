@@ -16,10 +16,30 @@ import argparse
 parser = argparse.ArgumentParser(description='Process image files to start a catalogue.')
 parser.add_argument('-r', '--rootdir',
                     help='root directory for the source image files')
-parser.add_argument('-f', '--file', default='image.jpg',
+parser.add_argument('-f', '--file', default='001.jpg',
                     help='a single source image file')
 parser.add_argument('-t', '--filetype', default='jpg',
                     help='file type to process (e.g. jpg)')
+
+def valid_date(s):
+    try:
+        return datetime.strptime(s, "%Y-%m-%d")
+    except ValueError:
+        msg = "Not a valid date: '{0}'.".format(s)
+        raise argparse.ArgumentTypeError(msg)
+ 
+parser.add_argument('-s', '--startdate', 
+                    help='Start date (format YYYY-MM-DD)', 
+                    type=valid_date)
+parser.add_argument('-e', '--enddate', 
+                    help='End date (format YYYY-MM-DD)', 
+                    type=valid_date)
+
+parser.add_argument('-d', '--database', 
+                    help='Database name',
+                    default='photo_catalogue.db')
+
+                                     
 args = parser.parse_args()
 
 
