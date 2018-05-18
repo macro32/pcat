@@ -14,9 +14,16 @@ class Sqlite:
 	
 	def __init__(self):
 		pass
-		
-	def create(self):
-		pass
+
+#    def create_connection(self, db_file):
+#		pass
+        #""" create a database connection to a SQLite database """
+        #try:
+            #conn = sqlite3.connect(db_file)
+        #except Error as e:
+            #print(e)
+        #finally:
+            #conn.close()		
 		
 	def delete(self):
 		pass
