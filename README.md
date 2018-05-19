@@ -20,5 +20,5 @@ So my requirements are pretty straightforward:
 
 Why haven't I considered the photo manager applications? Well, the best cost, but a modest price would be considered. However, a lifetime of not paying for most of my software has spoiled me, and made me reluctant to give someone money for something I can implement myself. Reduced circumstances mean free and Open Source is even more attractive, whatever the requirements. But rolling your own is quite satisfying and a way of keeping my hand in.
 
-Still, it doesn't hurt to check out the stuff that will run on Linux. I use Shotwell as my photo maanger for no other reason than it runs on Linux and seems OK. Can't complain. Can't extol. I had Lightroom recommended highly today so I will check that out. At first glance it does seem tied to Windows and Mac, so it may be a none-starter.
+Still, it doesn't hurt to check out the stuff that will run on Linux. I use Shotwell as my photo maanger for no other reason than it runs on Linux and seems OK. Can't complain. Can't extol. I had Lightroom recommended highly today so I will check that out. At first glance it does seem tied to Windows and Mac, so it may be a non-starter.
 
