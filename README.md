@@ -15,6 +15,7 @@ So let's start with my requirements, which are pretty straightforward:
 * handle notes
 * handle location
 * handle scene types well (another 'tag' thing, but maybe more...)
+* does a bunch of reconciliation between what I think I have and what it is (e.g dates)
 * it costs neawt
 * command line is fine (who *needs* a stinking GUI?)
 
