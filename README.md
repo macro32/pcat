@@ -5,7 +5,7 @@ So here's the thing. I wanted to find a photo of a rose that I took and made a g
 
 This is going to help me start a proper catalogue of 15+ years worth of photographs. Starting with pulling the EXIF data that gets embedded into jpg images. The libexif library and exif program are written in C, with no dependencies. They are command line driven and output to stdout. So they are easy to run from a Python script and just pipe data into text files for processing. I am not interested in neat integration, just getting the basic info into a database.
 
-It was suggested to me that there might be some great applications out there that do a fantastic job with photos. Lightroom was recommended and a quick Google turns up Luminar 2018. Perhaps even everything that I want. 
+It was suggested to me that there might be some great applications out there that do a fantastic job with photos. Lightroom was highly recommended today and a quick Google turns up Luminar 2018 which seems a distinct rival. 
 
 So let's start with my requirements, which are pretty straightforward:
 
@@ -20,5 +20,5 @@ So let's start with my requirements, which are pretty straightforward:
 
 Why haven't I considered the photo manager applications? Well, the best cost, but a modest price would be considered. However, a lifetime of not paying for most of my software has spoiled me, and made me reluctant to give someone money for something I can implement myself, whatever the requirements. My reduced circumstances mean free and Open Source is even more attractive. And rolling your own is quite satisfying and a way of keeping my hand in.
 
-Still, it doesn't hurt to check out the stuff that will run on Linux. I use Shotwell as my photo maanger for no other reason than it runs on Linux and seems OK. Can't complain. Can't extol. I had Lightroom recommended highly today so I will check that out. At first glance it does seem tied to Windows and Mac, so it may be a non-starter.
+Still, it doesn't hurt to check out the stuff that will run on Linux. I use Shotwell as my photo maanger for no other reason than it runs on Linux and seems OK. Can't complain. Can't extol. Lightroom was recommended  but at first glance it does seem tied to Windows and Mac, so it may be a non-starter. Similarly with Luminar. I need to investigate more closely and tie down what I actually want.
 
