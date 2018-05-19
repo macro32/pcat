@@ -15,9 +15,20 @@ So let's start with my requirements, which are pretty straightforward:
 * handle notes
 * handle location
 * handle scene types well (another 'tag' thing, but maybe more...)
-* does a bunch of reconciliation between what I think I have and what it is (e.g dates)
+* does a bunch of reconciliation between what I think I have, and what it is (e.g dates)
+* use existing libraries and services which comply (i.e. cost neawt)
 * it costs neawt
 * command line is fine (who *needs* a stinking GUI?)
+
+Use Cases are good. Let's do a Use Case or three.
+
+1. Extract date taken. Save to DB. Check with current directory (yyyy/mm/dd). Flag differences.
+2. Add location(s). I can remember most.
+3. Add tags indicating content (e.g Landscape, River, Seascape, Sunset, Sunrise, Flower, Rose, ...)
+4. Add notes. Context. Special circumstances. Memories. 
+5. Add quality indicator. Subjective, but useful. Technical quality, composition, potential usefulness, are all factors.
+6. Extract technical data. Save to DB. Specifically f-stop, exposure, ISO, etc.
+7. Auto analyse content to help with tagging. Ambitious, maybe. But instructive and fun. Portraits. Flowers. For starters.
 
 Why haven't I considered the photo manager applications? Well, the best cost, but a modest price would be considered. However, a lifetime of not paying for most of my software has spoiled me, and made me reluctant to give someone money for something I can implement myself, whatever the requirements. My reduced circumstances mean free and Open Source is even more attractive. And rolling your own is quite satisfying and a way of keeping my hand in.
 
