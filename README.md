@@ -35,3 +35,26 @@ Why haven't I considered the photo manager applications? Well, the best cost, bu
 Still, it doesn't hurt to check out the stuff that will run on Linux. I use Shotwell as my photo maanger for no other reason than it runs on Linux and seems OK. Can't complain. Can't extol. Lightroom was recommended  but at first glance it does seem tied to Windows and Mac, so it may be a non-starter. Similarly with Luminar. I need to investigate more closely and tie down what I actually want.
 
 It looks like Lightroom only runs on recent Windows or macOS versions. The only Windows I run is an old XP box for my retro games. I have no plans to run Windows in the near future. And as much as I want to run macOS, I really find it hard to justify the cost, given what they have done with the MacBook Pro. So it looks like a no go for Lightroom.
+
+So after a couple of days reflection. The Use Cases aren't brilliant. Perhaps.... 
+
+1. Collate, consolidate and check what I have.
+   * remove duplicates
+   * check and fix dates
+   * check I have everything
+   
+2. Add additional information
+   * assign tags for location
+   * add (tags?) quality indicator(s) - technical, composition, feasibility for a painting
+   * add tag(s) for difficulty to turn into a painting
+   * extract EXIF data and save it in searchable format
+ 
+3. Analyse image for content
+   * recognition software or manual? flowers, portraits should be relatively easy, what else?, add tags
+   
+4. Add context and personal comment and additional content
+   * personal notes on the scene (feelings, opinion)
+   * context notes (event, background)
+   
+   
+
