@@ -55,6 +55,13 @@ So after a couple of days reflection. The Use Cases aren't brilliant. Perhaps...
 4. Add context and personal comment and additional content
    * personal notes on the scene (feelings, opinion)
    * context notes (event, background)
-   
-   
+
+Still don't think I have grasped the concept of Use Cases. The above are more like organised and expanded requirements for the system I want, rather than proper Use Cases.
+
+So I will say that I really only have one.
+
+1. to be able to search my photographs so I can locate images on request using a range of factors, including subject, quality, suitability for painting, location, and so on.
+  
+In order to achieve this, I need to collect all the physical data I have, like the actual photos, their EXIF metadata and enrich it with manual additions, like where it was taken, some context and details of content. If I can automate some of this data aggregation then it would perhaps save some time and be a useful programming exercise. If I can't, then so e it. (My notebook is having a problem with 'b'. Just one reason I have started looking at replacements. It could be worse though. It could be 'e'.)
+
 
