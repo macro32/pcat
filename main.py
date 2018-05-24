@@ -12,11 +12,12 @@ import exif
 
 # process the program arguments
 import argparse
+import itertools
 
 parser = argparse.ArgumentParser(description='Process image files to start a catalogue.')
 parser.add_argument('-r', '--rootdir',
                     help='root directory for the source image files')
-parser.add_argument('-f', '--file', default='001.jpg',
+parser.add_argument('-f', '--filename', default='001.jpg',
                     help='a single source image file')
 parser.add_argument('-t', '--filetype', default='jpg',
                     help='file type to process (e.g. jpg)')
@@ -39,7 +40,35 @@ parser.add_argument('-d', '--database',
                     help='Database name',
                     default='photo_catalogue.db')
 
-                                     
+# different and mutually exclusive requirement processing
+compatible_options1 = ( '-x', '-a', '-n' )
+parser.add_argument('-x', '--extract', 
+                    help='Extract all exif data and save to sqlite database')
+
+parser.add_argument('-a', '--add', 
+                    help='Add extra tag data from file and save to sqlite database')
+
+parser.add_argument('-n', '--notes', 
+                    help='Add notes from file and save to sqlite database')
+
+# the following are speculative and assume I will run separate ID software for different types of images
+compatible_options2 = ( '-b', '-p' )
+parser.add_argument('-b', '--botanical', 
+                    help='Run image id for flowers and save to sqlite database')
+
+parser.add_argument('-p', '--portrait', 
+                    help='Run portrait id for portraits and save to sqlite database')
+                    
+
+exclusives = itertools.product(compatible_options1, compatible_options2)
+for exclusive_grp in exclusives:
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(exclusive_grp[0])
+    group.add_argument(exclusive_grp[1])
+
+
+
+                                
 args = parser.parse_args()
 
 
