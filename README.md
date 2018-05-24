@@ -64,4 +64,4 @@ So I will say that I really only have one.
   
 In order to achieve this, I need to collect all the physical data I have, like the actual photos, their EXIF metadata and enrich it with manual additions, like where it was taken, some context and details of content. If I can automate some of this data aggregation then it would perhaps save some time and be a useful programming exercise. If I can't, then so e it. (My notebook is having a problem with 'b'. Just one reason I have started looking at replacements. It could be worse though. It could be 'e'.)
 
-
+It looks like Shotwell does not have very comprehensive export facilities. You can export images but not a lot else. If it dos tags then it is ok, but it would be nice to have a it more control and keep all the data together. 
