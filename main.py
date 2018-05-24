@@ -42,11 +42,11 @@ parser.add_argument('-d', '--database',
 
 
 group = parser.add_mutually_exclusive_group()
-group.add_argument('-x', '--extract', action='store_true', 
+group.add_argument('-x', '--extract', 
                     help='Extract all exif data and save to sqlite database')
-group.add_argument('-a', '--add', action='store_true', 
+group.add_argument('-a', '--add', 
                     help='Add extra tag data from file and save to sqlite database')
-group.add_argument('-n', '--notes', action='store_true', 
+group.add_argument('-n', '--notes', 
                     help='Add notes from file and save to sqlite database')
 
 group = parser.add_mutually_exclusive_group()
