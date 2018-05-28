@@ -13,23 +13,19 @@ import sqlite3
 class Sqlite:
 	
 	def __init__(self):
-		pass
-
-#    def create_connection(self, db_file):
-#		pass
-        #""" create a database connection to a SQLite database """
-        #try:
-            #conn = sqlite3.connect(db_file)
-        #except Error as e:
-            #print(e)
-        #finally:
-            #conn.close()		
-		
-	def delete(self):
-		pass
-		
-	def execute(self):
-		pass
+	    self.db_file = "photographs.db"
+				
+	def execute(self, sql):
+		try:
+			conn = sqlite3.connect(db_file)
+		except Error as e:
+			print(e)
+		finally:
+			conn.close()            
+		c = conn.cursor()
+		c.execute(sql)
+		conn.commit()
+		conn.close()
 		
 		
 		

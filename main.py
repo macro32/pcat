@@ -15,11 +15,15 @@ import argparse
 import itertools
 
 parser = argparse.ArgumentParser(description='Process image files to start a catalogue.', prog='pcat')
+
 parser.add_argument('-r', '--rootdir',
                     help='root directory for the source image files')
-parser.add_argument('-f', '--filename', default='001.jpg',
+
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-f', '--filename', default='001.jpg',
                     help='a single source image file')
-parser.add_argument('-t', '--filetype', default='jpg',
+
+group.add_argument('-t', '--filetype', default='jpg',
                     help='file type to process (e.g. jpg)')
 
 def valid_date(s):
@@ -32,6 +36,7 @@ def valid_date(s):
 parser.add_argument('-s', '--startdate', 
                     help='Start date (format YYYY-MM-DD)', 
                     type=valid_date)
+                    
 parser.add_argument('-e', '--enddate', 
                     help='End date (format YYYY-MM-DD)', 
                     type=valid_date)
@@ -44,14 +49,17 @@ parser.add_argument('-d', '--database',
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-x', '--extract', 
                     help='Extract all exif data and save to sqlite database')
+                    
 group.add_argument('-a', '--add', 
                     help='Add extra tag data from file and save to sqlite database')
+
 group.add_argument('-n', '--notes', 
                     help='Add notes from file and save to sqlite database')
 
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-b', '--botanical', 
                     help='Run image id for flowers and save to sqlite database')
+                    
 group.add_argument('-p', '--portrait', 
                     help='Run portrait id for portraits and save to sqlite database')
                                                    
@@ -99,7 +107,7 @@ def main(args):
     init()
     process()
     cleanup()
-    
+
     return 0
 
 if __name__ == '__main__':
