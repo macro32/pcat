@@ -17,6 +17,7 @@ class Sqlite:
 				
 	def execute(self, sql):
 		try:
+			# connecting creates the db if it doesn't exist
 			conn = sqlite3.connect(db_file)
 		except Error as e:
 			print(e)
