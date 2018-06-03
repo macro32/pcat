@@ -66,12 +66,38 @@ group.add_argument('-p', '--portrait',
 args = parser.parse_args()
 
 sql_create_image_table = """CREATE TABLE IF NOT EXISTS images (
+    id AUTO
 	filename VARCHAR(256),
-	filetype VARCHAR(16),
+	location VARCHAR(256),
+	technical UNSIGNED INTEGER,
+	composition UNSIGNED INTEGER,
+	suitability UNSIGNED INTEGER,
+	event VARCHAR(256),
+	scene_type VARCHAR(32),
+	notes TEXT
 )
 """
 
+
+
 sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags
+	image_description VARCHAR(128),
+	manufacturer VARCHAR(32),
+	model VARCHAR(64),
+	orientation VARCHAR(32),
+	x-resolution UNSIGNED INTEGER,
+	y-resolution UNSIGNED INTEGER,
+	resolution_unit VARCHAR(16),
+	date_and_time DATETIME,
+	YCbCr_positioning VARCHAR(32),
+	compression VARCHAR(64),
+	x_resolution UNSIGNED INTEGER,
+	y_resolution UNSIGNED INTEGER,
+	resolution_unit VARCHAR(16),
+	exposure_time VARCHAR(16),
+	f-number VARCHAR(16),
+	iso_speed_ratings UNSIGNED INTEGER,
+	
 Image Description   |                               
 Manufacturer        |Canon
 Model               |Canon PowerShot G12
