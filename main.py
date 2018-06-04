@@ -97,6 +97,39 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags
 	exposure_time VARCHAR(16),
 	f-number VARCHAR(16),
 	iso_speed_ratings UNSIGNED INTEGER,
+	exif_version VARCHAR(32),
+	original_date_and_time TIMESTAMP,
+	digital_date_and_time TIMESTAMP,
+	components_configuration VARCHAR(32),
+	compressed_bits_per_pixel UNSIGNED INTEGER,
+	shutter_speed VARCHAR(64),
+	aperture VARCHAR(64),
+	exposure_bias VARCHAR(64),
+    maximum_aperture_value VARCHAR(64),
+    metering_mode VARCHAR(64),
+    flash VARCHAR(64),
+    focal_length VARCHAR(64),
+    maker_note TEXT,
+    user_comment TEXT,
+    flash_pix_version VARCHAR(64),
+    colour_space VARCHAR(16),
+    pixel_x_dimension UNSIGNED INTEGER,
+    pixel_y_dimension UNSIGNED INTEGER,
+Focal Plane X-Resolu|12493.151
+Focal Plane Y-Resolu|12493.151
+Focal Plane Resoluti|Inch
+Sensing Method      |One-chip colour area sensor
+File Source         |DSC
+Custom Rendered     |Normal process
+Exposure Mode       |Auto exposure
+White Balance       |Auto white balance
+Digital Zoom Ratio  |1.0000
+Scene Capture Type  |Standard
+Interoperability Ind|R98
+Interoperability Ver|0100
+RelatedImageWidth   |3648
+RelatedImageLength  |2736
+	
 	
 Image Description   |                               
 Manufacturer        |Canon
