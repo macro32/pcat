@@ -66,7 +66,7 @@ group.add_argument('-p', '--portrait',
 args = parser.parse_args()
 
 sql_create_image_table = """CREATE TABLE IF NOT EXISTS images (
-    id AUTO
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	filename VARCHAR(256),
 	location VARCHAR(256),
 	technical UNSIGNED INTEGER,
@@ -80,7 +80,7 @@ sql_create_image_table = """CREATE TABLE IF NOT EXISTS images (
 
 
 
-sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags
+sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
 	image_description VARCHAR(128),
 	manufacturer VARCHAR(32),
 	model VARCHAR(64),
@@ -115,70 +115,21 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags
     colour_space VARCHAR(16),
     pixel_x_dimension UNSIGNED INTEGER,
     pixel_y_dimension UNSIGNED INTEGER,
-Focal Plane X-Resolu|12493.151
-Focal Plane Y-Resolu|12493.151
-Focal Plane Resoluti|Inch
-Sensing Method      |One-chip colour area sensor
-File Source         |DSC
-Custom Rendered     |Normal process
-Exposure Mode       |Auto exposure
-White Balance       |Auto white balance
-Digital Zoom Ratio  |1.0000
-Scene Capture Type  |Standard
-Interoperability Ind|R98
-Interoperability Ver|0100
-RelatedImageWidth   |3648
-RelatedImageLength  |2736
-	
-	
-Image Description   |                               
-Manufacturer        |Canon
-Model               |Canon PowerShot G12
-Orientation         |Top-left
-X-Resolution        |180
-Y-Resolution        |180
-Resolution Unit     |Inch
-Date and Time       |2016:06:11 10:48:50
-YCbCr Positioning   |Co-sited
-Compression         |JPEG compression
-X-Resolution        |180
-Y-Resolution        |180
-Resolution Unit     |Inch
-Exposure Time       |1/250 sec.
-F-Number            |f/4.0
-ISO Speed Ratings   |80
-Exif Version        |Exif Version 2.3
-Date and Time (Origi|2016:06:11 10:48:50
-Date and Time (Digit|2016:06:11 10:48:50
-Components Configura|Y Cb Cr -
-Compressed Bits per | 3
-Shutter Speed       |7.97 EV (1/250 sec.)
-Aperture            |4.00 EV (f/4.0)
-Exposure Bias       |0.00 EV
-Maximum Aperture Val|3.34 EV (f/3.2)
-Metering Mode       |Pattern
-Flash               |Flash did not fire, auto mode
-Focal Length        |10.8 mm
-Maker Note          |2764 bytes undefined data
-User Comment        |
-FlashPixVersion     |FlashPix Version 1.0
-Colour Space        |sRGB
-Pixel X Dimension   |3648
-Pixel Y Dimension   |2736
-Focal Plane X-Resolu|12493.151
-Focal Plane Y-Resolu|12493.151
-Focal Plane Resoluti|Inch
-Sensing Method      |One-chip colour area sensor
-File Source         |DSC
-Custom Rendered     |Normal process
-Exposure Mode       |Auto exposure
-White Balance       |Auto white balance
-Digital Zoom Ratio  |1.0000
-Scene Capture Type  |Standard
-Interoperability Ind|R98
-Interoperability Ver|0100
-RelatedImageWidth   |3648
-RelatedImageLength  |2736
+    focal_plane_x-resolution REAL,
+    focal_plane_y-resolution REAL,
+    focal_plane_resolution VARCHAR(16),
+    sensing_method VARCHAR(32),
+    file_source VARCHAR(16),
+    custom_rendered VARCHAR(32),
+    exposure_mode VARCHAR(32),
+    white_balance VARCHAR(32),
+    digital_zoom_ratio REAL,
+    scene_capture_type VARCHAR(16),
+    interoperability_ind VARCHAR(16),
+    interoperability version UNSIGNED INTEGER,
+    relatedimagewidth UNSIGNED INTEGER,
+    relatedimagelength UNSIGNED INTEGER	
+    )
 """
 
 # set up operational parameters
@@ -187,6 +138,11 @@ def init():
 	# check program args
 	# extract args and create processing classes
 	db = sqlite.Sqlite()
+	sql = sql_create_image_table
+	print( sql)
+#	db.execute( sql )
+	sql = sql_create_tag_table
+#	db.execute( sql )
 	data = exif.Exif()
 	# set up logging
 	# set up database

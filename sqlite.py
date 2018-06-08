@@ -13,16 +13,16 @@ import sqlite3
 class Sqlite:
 	
 	def __init__(self):
-	    self.db_file = "photographs.db"
-				
+		self.db_file = "photographs.db"
+
 	def execute(self, sql):
 		try:
 			# connecting creates the db if it doesn't exist
-			conn = sqlite3.connect(db_file)
+			conn = sqlite3.connect(self.db_file)
 		except Error as e:
 			print(e)
-		finally:
-			conn.close()            
+#		finally:
+#			conn.close()            
 		c = conn.cursor()
 		c.execute(sql)
 		conn.commit()
