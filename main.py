@@ -85,8 +85,8 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
 	manufacturer VARCHAR(32),
 	model VARCHAR(64),
 	orientation VARCHAR(32),
-	x-resolution UNSIGNED INTEGER,
-	y-resolution UNSIGNED INTEGER,
+	x_resolution UNSIGNED INTEGER,
+	y_resolution UNSIGNED INTEGER,
 	resolution_unit VARCHAR(16),
 	date_and_time DATETIME,
 	YCbCr_positioning VARCHAR(32),
@@ -95,7 +95,7 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
 	y_resolution UNSIGNED INTEGER,
 	resolution_unit VARCHAR(16),
 	exposure_time VARCHAR(16),
-	f-number VARCHAR(16),
+	f_number VARCHAR(16),
 	iso_speed_ratings UNSIGNED INTEGER,
 	exif_version VARCHAR(32),
 	original_date_and_time TIMESTAMP,
@@ -115,8 +115,8 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
     colour_space VARCHAR(16),
     pixel_x_dimension UNSIGNED INTEGER,
     pixel_y_dimension UNSIGNED INTEGER,
-    focal_plane_x-resolution REAL,
-    focal_plane_y-resolution REAL,
+    focal_plane_x_resolution REAL,
+    focal_plane_y_resolution REAL,
     focal_plane_resolution VARCHAR(16),
     sensing_method VARCHAR(32),
     file_source VARCHAR(16),
@@ -126,7 +126,7 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
     digital_zoom_ratio REAL,
     scene_capture_type VARCHAR(16),
     interoperability_ind VARCHAR(16),
-    interoperability version UNSIGNED INTEGER,
+    interoperability_version UNSIGNED INTEGER,
     relatedimagewidth UNSIGNED INTEGER,
     relatedimagelength UNSIGNED INTEGER	
     )
@@ -140,13 +140,13 @@ def init():
 	db = sqlite.Sqlite()
 	sql = sql_create_image_table
 	print( sql)
-#	db.execute( sql )
+	db.execute( sql )
 	sql = sql_create_tag_table
-#	db.execute( sql )
+	db.execute( sql )
 	data = exif.Exif()
 	# set up logging
 	# set up database
-	pass
+
 	
 # process the files
 def process():
@@ -176,8 +176,8 @@ def main(args):
     print( "processing...." )
     
     init()
-    process()
-    cleanup()
+#    process()
+#    cleanup()
 
     return 0
 
