@@ -132,6 +132,71 @@ sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
     )
 """
 
+sql_insert_tags = """INSERT INTO tags (
+	image_description,
+	manufacturer,
+	model,
+	orientation,
+	x_resolution_orientation,
+	y_resolution_orientation,
+	resolution_unit_orientation,
+	date_and_time,
+	YCbCr_positioning,
+	compression,
+	x_resolution_compression,
+	y_resolution_compression,
+	resolution_unit_compression,
+	exposure_time,
+	f_number,
+	iso_speed_ratings,
+	exif_version,
+	original_date_and_time,
+	digital_date_and_time,
+	components_configuration,
+	compressed_bits_per_pixel,
+	shutter_speed,
+	aperture,
+	exposure_bias,
+    maximum_aperture_value,
+    metering_mode,
+    flash,
+    focal_length,
+    maker_note,
+    user_comment,
+    flash_pix_version,
+    colour_space,
+    pixel_x_dimension,
+    pixel_y_dimension,
+    focal_plane_x_resolution,
+    focal_plane_y_resolution,
+    focal_plane_resolution,
+    sensing_method,
+    file_source,
+    custom_rendered,
+    exposure_mode,
+    white_balance,
+    digital_zoom_ratio,
+    scene_capture_type,
+    interoperability_ind,
+    interoperability_version,
+    relatedimagewidth,
+    relatedimagelength	
+    )
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+"""
+
+# alternate number 1 is to use simplified 'property' type associations
+sql_create_property_table = """CREATE TABLE IF NOT EXISTS property (
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	images_id REFERENCES images( id ),
+	name VARCHAR(128),
+	value VARCHAR(256),
+	type INTEGER  
+)"""
+
+# alternate number 2 is to use a different DB, like {key, value} shit
+# todo: have another look
+
 # set up operational parameters
 def init():
 	print( "init()" )
