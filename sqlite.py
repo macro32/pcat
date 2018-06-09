@@ -20,7 +20,6 @@ class Sqlite:
 		try:
 			# connecting creates the db if it doesn't exist
 			self.conn = sqlite3.connect(self.db_file)
-			print('conn')
 		except Error as e:
 			print(e)
 #		finally:
