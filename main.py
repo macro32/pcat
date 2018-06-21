@@ -14,6 +14,19 @@ import exif
 import argparse
 import itertools
 
+import logging
+
+
+# logger stuff
+logger = logging.getLogger('pcat')
+logger.setLevel(logging.DEBUG)
+fh = logging.FileHandler('pcat.log')
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+
 parser = argparse.ArgumentParser(description='Process image files to start a catalogue.', prog='pcat')
 
 parser.add_argument('-r', '--rootdir',
@@ -188,14 +201,23 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,
 # alternate number 1 is to use simplified 'property' type associations
 sql_create_property_table = """CREATE TABLE IF NOT EXISTS property (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	images_id REFERENCES images( id ),
-	name VARCHAR(128),
-	value VARCHAR(256),
-	type INTEGER  
+	images_id REFERENCES images( id ), 	-- foreign key
+	name VARCHAR(128),	-- mostly shortish text, integers or floats, we'll see
+	value VARCHAR(256), -- sort of an enum but there may be a better way
+	type INTEGER 
 )"""
 
-# alternate number 2 is to use a different DB, like {key, value} shit
-# todo: have another look
+sql_insert_property = """INSERT INTO property (
+	images_id,
+	name,
+	value,
+	type
+	)
+VALUES (?,?,?,?)  
+)"""
+
+# alternate number 2 is to use a different DB, like the {key, value} nosql shit
+# todo: have another look at the fashionable nosql dbs
 
 # set up operational parameters
 def init():
@@ -207,6 +229,10 @@ def init():
 	print( sql)
 	db.execute( sql )
 	sql = sql_create_tag_table
+	print( sql)
+	db.execute( sql )
+	sql = sql_create_property_table
+	print( sql)
 	db.execute( sql )
 	data = exif.Exif()
 	# set up logging
