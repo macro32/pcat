@@ -8,7 +8,8 @@
 
 import sqlite
 import exif
-
+import glob
+import subprocess
 
 # process the program arguments
 import argparse
@@ -226,10 +227,10 @@ def init():
 	# extract args and create processing classes
 	db = sqlite.Sqlite()
 	sql = sql_create_image_table
-	print( sql)
+	print( sql )
 	db.execute( sql )
 	sql = sql_create_tag_table
-	print( sql)
+	print( sql )
 	db.execute( sql )
 	sql = sql_create_property_table
 	print( sql)
@@ -238,10 +239,24 @@ def init():
 	# set up logging
 	# set up database
 
+def process_result( result ):
+	print( result )
 	
+def get_exif_data( file ):
+	print( file )
+	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
+	process_result( result )
+	
+def extract( files ):
+	for f in files:
+		get_exif_data( f )
+		
 # process the files
 def process():
 	print( "process()" )
+	files = glob.glob( './*.JPG' )
+	print( files )
+	extract( files )
 	# for each directory
 	#   get list of files
 	#   for each file
@@ -258,7 +273,7 @@ def cleanup():
 	pass
 	
 
-# process an image file, start with jpg
+# process an image file, start with jpgs and
 # extract EXIF data
  
 
@@ -267,7 +282,7 @@ def main(args):
     print( "processing...." )
     
     init()
-#    process()
+    process()
 #    cleanup()
 
     return 0
