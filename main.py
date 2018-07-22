@@ -240,12 +240,24 @@ def init():
 	# set up database
 
 def process_result( result ):
-	print( result )
+#	print( result )
+	lines = result.split( '\n' )
+	split_lines = []
+	for i in range( 0, len(lines) ):
+		try:
+			split_lines.append(lines[i].split('|')[0])
+			split_lines.append(lines[i].split('|')[1])
+		except Exception as e:
+			print( e )
+	print( lines )
+			
+	
 	
 def get_exif_data( file ):
 	print( file )
 	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
 	process_result( result )
+	
 	
 def extract( files ):
 	for f in files:
