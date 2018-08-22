@@ -92,6 +92,17 @@ sql_create_image_table = """CREATE TABLE IF NOT EXISTS images (
 )
 """
 
+sql_insert_image = """INSERT INTO images (
+	filename,
+	location,
+	technical,
+	composition,
+	suitability,
+	event,
+	scene_type,
+	notes)
+	VALUES ( ?,?,?,?,?,?,?,? )
+"""
 
 
 sql_create_tag_table = """CREATE TABLE IF NOT EXISTS tags (
@@ -209,6 +220,7 @@ sql_create_property_table = """CREATE TABLE IF NOT EXISTS property (
 )"""
 
 sql_insert_property = """INSERT INTO property (
+	id,
 	images_id,
 	name,
 	value,
@@ -222,41 +234,40 @@ VALUES (?,?,?,?)
 
 # set up operational parameters
 def init():
-	print( "init()" )
 	# check program args
 	# extract args and create processing classes
 	db = sqlite.Sqlite()
 	sql = sql_create_image_table
-	print( sql )
-	db.execute( sql )
+	db.execute_noreturn( sql )
 	sql = sql_create_tag_table
-	print( sql )
-	db.execute( sql )
+	db.execute_noreturn( sql )
 	sql = sql_create_property_table
-	print( sql)
-	db.execute( sql )
+	db.execute_noreturn( sql )
 	data = exif.Exif()
 	# set up logging
 	# set up database
 
-def process_result( result ):
-#	print( result )
+def save_entries( f, entries ):
+	db = sqlite.Sqlite()
+	sql = sql_insert_image
+	id = db.execute( sql, (f, '', '', '', '', '', '', '') )
+	
+def process_result( f, result ):
 	lines = result.split( '\n' )
-	split_lines = []
+	entries = {}
 	for i in range( 0, len(lines) ):
 		try:
-			split_lines.append(lines[i].split('|')[0])
-			split_lines.append(lines[i].split('|')[1])
+			entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
 		except Exception as e:
 			print( e )
-	print( lines )
-			
+	print( entries )
+	save_entries( f, entries )
 	
 	
 def get_exif_data( file ):
 	print( file )
 	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
-	process_result( result )
+	process_result( file, result )
 	
 	
 def extract( files ):

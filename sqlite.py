@@ -16,7 +16,7 @@ class Sqlite:
 		print('sqlite.init')
 		self.db_file = "photographs.db"
 
-	def execute(self, sql):
+	def execute_noreturn(self, sql):
 		try:
 			# connecting creates the db if it doesn't exist
 			self.conn = sqlite3.connect(self.db_file)
@@ -26,9 +26,24 @@ class Sqlite:
 #			conn.close()            
 		c = self.conn.cursor()
 		c.execute(sql)
+		id = c.lastrowid
 		self.conn.commit()
 		self.conn.close()
+		return id
 		
-		
+	def execute(self, sql, values):
+		try:
+			# connecting creates the db if it doesn't exist
+			self.conn = sqlite3.connect(self.db_file)
+		except Error as e:
+			print(e)
+#		finally:
+#			conn.close()            
+		c = self.conn.cursor()
+		c.execute(sql, values)
+		id = c.lastrowid
+		self.conn.commit()
+		self.conn.close()
+		return id
 		
 
