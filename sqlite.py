@@ -13,7 +13,6 @@ import sqlite3
 class Sqlite:
 	
 	def __init__(self):
-		print('sqlite.init')
 		self.db_file = "photographs.db"
 
 	def execute_noreturn(self, sql):

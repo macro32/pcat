@@ -216,18 +216,17 @@ sql_create_property_table = """CREATE TABLE IF NOT EXISTS property (
 	images_id REFERENCES images( id ), 	-- foreign key
 	name VARCHAR(128),	-- mostly shortish text, integers or floats, we'll see
 	value VARCHAR(256), -- sort of an enum but there may be a better way
-	type INTEGER 
+	type INTEGER DEFAULT 0
 )"""
 
 sql_insert_property = """INSERT INTO property (
-	id,
 	images_id,
 	name,
 	value,
 	type
 	)
 VALUES (?,?,?,?)  
-)"""
+"""
 
 # alternate number 2 is to use a different DB, like the {key, value} nosql shit
 # todo: have another look at the fashionable nosql dbs
@@ -246,26 +245,34 @@ def init():
 	data = exif.Exif()
 	# set up logging
 	# set up database
+	
+def save_entry( id, entry, value ):
+	print( id, entry, value, )
+	db = sqlite.Sqlite()
+	sql = sql_insert_property
+	db.execute( sql, (id, entry, value, '') )
 
 def save_entries( f, entries ):
 	db = sqlite.Sqlite()
 	sql = sql_insert_image
 	id = db.execute( sql, (f, '', '', '', '', '', '', '') )
+	for entry in entries:
+		print( entry, ':', entries[ entry ] )
+		save_entry( id, entry, entries[ entry ] )
 	
 def process_result( f, result ):
 	lines = result.split( '\n' )
 	entries = {}
 	for i in range( 0, len(lines) ):
 		try:
-			entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
+			if lines[i].find( '|') > 0:
+				entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
 		except Exception as e:
 			print( e )
-	print( entries )
 	save_entries( f, entries )
 	
 	
 def get_exif_data( file ):
-	print( file )
 	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
 	process_result( file, result )
 	
@@ -276,9 +283,7 @@ def extract( files ):
 		
 # process the files
 def process():
-	print( "process()" )
 	files = glob.glob( './*.JPG' )
-	print( files )
 	extract( files )
 	# for each directory
 	#   get list of files
@@ -286,19 +291,16 @@ def process():
 	#     extract exif data
 	#     select all tags of interest
 	#     create database entry with the tag data
-	pass
 	
 # clean up
 def cleanup():
-	print( "cleanup()" )
 	# remove temporary files
 	# write summary/statistics
 	pass
-	
 
 # process an image file, start with jpgs and
 # extract EXIF data
- 
+
 
 def main(args):
     print( "pcat: photo catalogue generator" )
