@@ -231,6 +231,58 @@ VALUES (?,?,?,?)
 # alternate number 2 is to use a different DB, like the {key, value} nosql shit
 # todo: have another look at the fashionable nosql dbs
 
+# don't want the abbreviations, so set up a translation table
+xlate = {
+
+'Maximum Aperture Val' : 'Maximum Aperture Value',
+'Date and Time (Origi' : 'Date and Time (Original)',
+'File Source'          : 'File Source',
+'Date and Time (Digit' : 'Date and Time (Digital)',
+'Interoperability Ver' : 'Interoperability Version',
+'Sensing Method'       : 'Sensing Method',
+'Focal Plane Y-Resolu' : 'Focal Plane Y-Resolution',
+'Flash'                : 'Flash',
+'User Comment'         : 'User Comment',
+'Custom Rendered'      : 'Custom Rendered',
+'Metering Mode'        : 'Metering Mode',
+'Exif Version'         : 'Exif Version',
+'RelatedImageWidth'    : 'RelatedImageWidth',
+'ISO Speed Ratings'    : 'ISO Speed Ratings',
+'Aperture'             : 'Aperture',
+'Shutter Speed'        : 'Shutter Speed',
+'Digital Zoom Ratio'   : 'Digital Zoom Ratio',
+'White Balance'        : 'White Balance',
+'Compressed Bits per'  : 'Compressed Bits per Byte',
+'F-Number'             : 'F-Number',
+'Focal Plane X-Resolu' : 'Focal Plane X-Resolution',
+'Pixel X Dimension'    : 'Pixel X Dimension',
+'Model'                : 'Model',
+'Resolution Unit'      : 'Resolution Unit',
+'Focal Plane Resoluti' : 'Focal Plane Resolution',
+'Exposure Time'        : 'Exposure Time',
+'Image Description'    : 'Image Description',
+'Y-Resolution'         : 'Y-Resolution',
+'X-Resolution'         : 'X-Resolution',
+'Maker Note'           : 'Maker Note',
+'Colour Space'         : 'Colour Space',
+'Compression'          : 'Compression',
+'Exposure Mode'        : 'Exposure Mode',
+'Interoperability Ind' : 'Interoperability Indicator',
+'Components Configura' : 'Components Configuration',
+'Scene Capture Type'   : 'Scene Capture Type',
+'Manufacturer'         : 'Manufacturer',
+'Tag'                  : 'Tag',
+'Exposure Bias'        : 'Exposure Bias',
+'Orientation'          : 'Orientation',
+'YCbCr Positioning'    : 'YCbCr Positioning',
+'FlashPixVersion'      : 'FlashPixVersion',
+'Date and Time'        : 'Date and Time',
+'Pixel Y Dimension'    : 'Pixel Y Dimension',
+'RelatedImageLength'   : 'RelatedImageLength',
+'Focal Length'         : 'Focal Length'
+
+}
+
 # set up operational parameters
 def init():
 	# check program args
@@ -247,7 +299,7 @@ def init():
 	# set up database
 	
 def save_entry( id, entry, value ):
-	print( id, entry, value, )
+	print( id, xlate[ entry.strip() ], ':', value )
 	db = sqlite.Sqlite()
 	sql = sql_insert_property
 	db.execute( sql, (id, entry, value, '') )
@@ -257,7 +309,6 @@ def save_entries( f, entries ):
 	sql = sql_insert_image
 	id = db.execute( sql, (f, '', '', '', '', '', '', '') )
 	for entry in entries:
-		print( entry, ':', entries[ entry ] )
 		save_entry( id, entry, entries[ entry ] )
 	
 def process_result( f, result ):
