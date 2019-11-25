@@ -25,6 +25,7 @@
 import glob
 import os
 from os.path import join, getsize
+import subprocess
 
 # process the program arguments
 import argparse
@@ -78,10 +79,27 @@ def init():
 	# set up logging
 	# set up database
 
+def process_result( f, result ):
+	lines = result.split( '\n' )
+	entries = {}
+	for i in range( 0, len(lines) ):
+		try:
+			if lines[i].find( '|') > 0:
+				entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
+		except Exception as e:
+			print( e )
+	print( entries )
+	
+def get_exif_data( file ):
+	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
+	process_result( file, result )
+
+
 def extract( root, files ):
 	for f in files:
 		print( join(root, f) )
-#		get_exif_data( f )
+		image = join(root, f)
+		get_exif_data( image )
 		
 # process the files
 def process():
