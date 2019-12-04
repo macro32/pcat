@@ -96,10 +96,13 @@ def get_exif_data( file ):
 
 
 def extract( root, files ):
+	filetypes = { '.JPG', '.jpg'}
 	for f in files:
 		print( join(root, f) )
-		image = join(root, f)
-		get_exif_data( image )
+		filename = join(root, f)
+		name, extension = os.path.splitext( filename )
+		if extension in filetypes:
+			get_exif_data( filename )
 		
 # process the files
 def process():

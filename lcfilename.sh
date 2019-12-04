@@ -3,7 +3,7 @@
 helpFunction()
 {
    echo ""
-   echo "Usage: $0 -r root_dir"
+   echo "usage: $0 -r root_dir"
    echo -e "\t-r Root dir to start depth first search"
    exit 1 # Exit script after printing help
 }
