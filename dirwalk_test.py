@@ -27,6 +27,9 @@ import os
 from os.path import join, getsize
 import subprocess
 
+from xml.dom import minidom
+import xml.etree.ElementTree as ET
+
 # process the program arguments
 import argparse
 import itertools
@@ -79,19 +82,25 @@ def init():
 	# set up logging
 	# set up database
 
+#def process_result( f, result ):
+#	lines = result.split( '\n' )
+#	entries = {}
+#	for i in range( 0, len(lines) ):
+#		try:
+#			if lines[i].find( '|') > 0:
+#				entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
+#		except Exception as e:
+#			print( e )
+#	print( entries )
+
 def process_result( f, result ):
-	lines = result.split( '\n' )
-	entries = {}
-	for i in range( 0, len(lines) ):
-		try:
-			if lines[i].find( '|') > 0:
-				entries[lines[i].split('|')[0]] = lines[i].split('|')[1]
-		except Exception as e:
-			print( e )
-	print( entries )
+	print( '<?xml version="1.0"?>\n' + result )
+#	tree = ET.fromstring(result)
+#	doc = minidom.parseString( result )
+#	print( doc )
 	
 def get_exif_data( file ):
-	result = subprocess.run( ['exif', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
+	result = subprocess.run( ['exif', '-x', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
 	process_result( file, result )
 
 
