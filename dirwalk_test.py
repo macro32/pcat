@@ -95,9 +95,12 @@ def init():
 
 def process_result( f, result ):
 	print( '<?xml version="1.0"?>\n' + result )
-#	tree = ET.fromstring(result)
-#	doc = minidom.parseString( result )
-#	print( doc )
+	exif = ET.fromstring(result)
+	elements = exif.getiterator()
+	for e in elements:
+		print( e.tag )
+		print( e.text )
+	
 	
 def get_exif_data( file ):
 	result = subprocess.run( ['exif', '-x', file], stdout=subprocess.PIPE ).stdout.decode('utf-8')
@@ -129,15 +132,13 @@ def process():
 	#       extract exif data
 	#       select all tags of interest
 	#       create database entry with the tag data
-	for root, dirs, files in os.walk('/media/sf_Pictures'):
+	for root, dirs, files in os.walk('/home/john/Pictures'):
 		if len(files) > 0:
 			#print(root, "consumes", end=" ")
 			#print(sum(getsize(join(root, name)) for name in files), end=" ")
 			#print("bytes in", len(files), "non-directory files")
 			if files != []:
 				extract( root, files )
-			if 'CVS' in dirs:
-				dirs.remove('CVS')  # don't visit CVS directories
         
 def main(args):
     print( "pcat: photo catalogue generator: directory/file walking test" )
