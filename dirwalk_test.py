@@ -65,12 +65,13 @@ def extract( root, files ):
 		extension = extension[1:].lower()
 		if extension == args.filetype:
 			get_exif_data( filename )
-		
+
+	
 def process():
 	for root, dirs, files in os.walk('/home/john/Pictures'):
 		if len(files) > 0:
-			if files != []:
-				extract( root, files )
+			extract( root, files )
+
         
 def main(args):
     print( "pcat: photo catalogue generator: directory/file walking test" )
@@ -79,6 +80,7 @@ def main(args):
     process()
 
     return 0
+
 
 if __name__ == '__main__':
     import sys
