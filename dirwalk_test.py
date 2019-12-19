@@ -11,7 +11,6 @@ import os
 from os.path import join, getsize
 import subprocess
 
-from xml.dom import minidom
 import xml.etree.ElementTree as ET
 
 # process the program arguments
@@ -49,8 +48,7 @@ def process_result( f, result ):
 	exif = ET.fromstring(result)
 	elements = exif.getiterator()
 	for e in elements:
-		print( e.tag )
-		print( e.text )
+		print( e.tag, ': ', e.text )
 	
 	
 def get_exif_data( file ):
